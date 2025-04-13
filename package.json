@@ -1,0 +1,25 @@
+{
+  "name": "wifi-zone-api",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ahiime/wifi-zone-api.git"
+  },
+  "author": "Ahime, Nahim Salami",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ahiime/wifi-zone-api/issues"
+  },
+  "homepage": "https://github.com/Ahiime/wifi-zone-api#readme",
+  "description": "",
+  "dependencies": {
+    "csv-parser": "^3.2.0",
+    "express": "^5.1.0",
+    "multer": "^1.4.5-lts.2",
+    "mysql2": "^3.14.0"
+  }
+}
