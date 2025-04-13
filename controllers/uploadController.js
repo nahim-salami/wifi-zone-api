@@ -1,6 +1,4 @@
-// controllers/uploadController.js
 const loadCSV = require('../utils/csvLoader');
-const path = require('path');
 
 exports.uploadCSV = async (req, res) => {
   try {
@@ -10,11 +8,15 @@ exports.uploadCSV = async (req, res) => {
       return res.status(400).send('Aucun fichier reçu.');
     }
 
+    let totalInserted = 0;
+
     for (const file of files) {
-      await loadCSV(path.resolve(file.path));
+      const inserted = await loadCSV(file.buffer);
+      console.log(inserted);
+      totalInserted++;
     }
 
-    res.send('Tous les fichiers ont été traités avec succès.');
+    res.send(`${totalInserted} fichier(s) traité(s) avec succès.`);
   } catch (error) {
     console.error(error);
     res.status(500).send('Erreur lors du traitement des fichiers CSV.');

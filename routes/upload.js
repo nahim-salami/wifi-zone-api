@@ -4,6 +4,6 @@ const router = express.Router();
 const uploadController = require('../controllers/uploadController');
 const upload = require('../middleware/upload');
 
-router.post('/upload', upload.array('files'), uploadController.uploadCSV);
+router.post('/upload', upload.array('file'), uploadController.uploadCSV);
 
 module.exports = router;

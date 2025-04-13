@@ -1,13 +1,15 @@
-// utils/csvLoader.js
-const fs = require('fs');
 const csv = require('csv-parser');
+const stream = require('stream');
 const db = require('../config/db');
 
-async function loadCSV(filePath) {
+async function loadCSVFromBuffer(fileBuffer) {
   const users = [];
 
   return new Promise((resolve, reject) => {
-    fs.createReadStream(filePath)
+    const bufferStream = new stream.PassThrough();
+    bufferStream.end(fileBuffer);
+
+    bufferStream
       .pipe(csv(['username', 'till_time', 'total_time_left', 'actual_profile']))
       .on('data', (row) => {
         const username = row.username?.trim();
@@ -32,4 +34,4 @@ async function loadCSV(filePath) {
   });
 }
 
-module.exports = loadCSV;
+module.exports = loadCSVFromBuffer;
