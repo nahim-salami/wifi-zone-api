@@ -2,6 +2,9 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const cors = require("cors");
+
+app.use(cors());
 
 // 📦 Connexion à la base de données
 const mysql = require('./config/db');
