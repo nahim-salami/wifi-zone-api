@@ -10,13 +10,14 @@ async function loadCSVFromBuffer(fileBuffer) {
     bufferStream.end(fileBuffer);
 
     bufferStream
-      .pipe(csv(['username', 'till_time', 'total_time_left', 'actual_profile']))
+      .pipe(csv(['username', 'password', 'price']))
       .on('data', (row) => {
         const username = row.username?.trim();
-        const price = parseFloat(row.actual_profile);
+        const password = row.password?.trim();
+        const price = parseFloat(row.price?.trim());
 
         if (username && !isNaN(price)) {
-          users.push([username, username, price]); // username = password
+          users.push([username, password, price]); // username = password
         }
       })
       .on('end', async () => {
