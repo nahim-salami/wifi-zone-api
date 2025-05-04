@@ -4,14 +4,14 @@ require('dotenv').config();
 
 // Create a MySQL connection pool
 const pool = mysql.createPool({
+  host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
-  socketPath: process.env.DB_SOCKET_PATH,  // ✅ la bonne variable ici
+  port: process.env.DB_PORT,
   waitForConnections: true,
   connectionLimit: 10,
-  queueLimit: 0,
+  queueLimit: 0
 });
-
 
 module.exports = pool;
